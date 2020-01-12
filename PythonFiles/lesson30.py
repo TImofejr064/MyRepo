@@ -2,8 +2,9 @@
 # from random import *
 # import time
 
-# path = os.getcwd()
-# print(f'Путь к данному файлу - {path}')
+#
+#
+
 
 # while True:
 #     print('Случайное чилсо от 1 до 100 - ', randint(1, 100))
@@ -12,9 +13,9 @@
 #     print('Случайно отсортированный список - ', l)
 #     time.sleep(2)
 
-from . import libs as l
+from . import libs
 
-print(l.get_count('Ехал грека через реку', 'е'))
-print(l.get_len('Ехал грека через реку'))
+print(libs.get_count('Ехал грека через реку', 'е'))
+print(libs.get_len('Ехал грека через реку'))
 
 
