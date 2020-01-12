@@ -12,7 +12,7 @@
 #     print('Случайно отсортированный список - ', l)
 #     time.sleep(2)
 
-import libs as l
+from . import libs as l
 
 print(l.get_count('Ехал грека через реку', 'е'))
 print(l.get_len('Ехал грека через реку'))
