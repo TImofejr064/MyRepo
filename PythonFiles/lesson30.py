@@ -13,9 +13,5 @@
 #     print('Случайно отсортированный список - ', l)
 #     time.sleep(2)
 
-from . import libs
-
-print(libs.get_count('Ехал грека через реку', 'е'))
-print(libs.get_len('Ехал грека через реку'))
 
 
