@@ -11,6 +11,13 @@
 
     <h1>{{ post.book }}</h1>
     <p>{{ post.number_of_task }}</p>
+    {% if post.image%}
+        <img src="{{ post.image }}" alt="">
+    {% endif %}
     <a href="{% url 'main-page' %}">back to home-page</a>
 </body>
 </html>
+
+<!--https://gdz.ru/attachments/images/tasks/000/017/316/0002/5e06035fb4d65.jpg?d=0&s=LDoe70y6gx_lmWCcadsfpA-->
+<!--https://gdz.ru/attachments/images/tasks/000/017/316/0002/5e06035fb4d65.jpg?d=0&s=LDoe70y6gx_lmWCcadsfpA-->
+<!--gdz.ru/attachments/images/tasks/000/017/316/0002/5e06035fb4d65.jpg?d=0&s=LDoe70y6gx_lmWCcadsfpA-->
