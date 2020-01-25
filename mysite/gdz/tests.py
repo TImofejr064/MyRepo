@@ -1,3 +1,3 @@
-from django.test import TestCase
+from bs4 import BeautifulSoup
 
-# Create your tests here.
+
