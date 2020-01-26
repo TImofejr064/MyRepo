@@ -1,23 +1,25 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detail</title>
-</head>
-<body>
+{% extends 'gdz/base.html' %}
 
-    <h1>{{ post.book }}</h1>
-    <p>{{ post.number_of_task }}</p>
+{% block content%}
+    <div class="row  justify-content-center mt-5">
     {% if post.image%}
-        <img src="{{ post.image }}" alt="">
-    {% endif %}
-    <a href="{% url 'main-page' %}">back to home-page</a>
-</body>
-</html>
+        <div class="card" style="width: 70%;">
+                <a href="{{ post.image }}" width="1000%" data-fancybox>
+                    <img src="{{ post.image }}" width="240" class="card-img-top" alt="...">
+                </a>
 
-<!--https://gdz.ru/attachments/images/tasks/000/017/316/0002/5e06035fb4d65.jpg?d=0&s=LDoe70y6gx_lmWCcadsfpA-->
-<!--https://gdz.ru/attachments/images/tasks/000/017/316/0002/5e06035fb4d65.jpg?d=0&s=LDoe70y6gx_lmWCcadsfpA-->
-<!--gdz.ru/attachments/images/tasks/000/017/316/0002/5e06035fb4d65.jpg?d=0&s=LDoe70y6gx_lmWCcadsfpA-->
+            <div class="card-body">
+                <h1>ГДЗ по алгебре 7 класс Ю.Н. Макарычев Углубленный уровень</h1>
+                <p class="card-text">Номер - {{ post.number_of_task }}</p>
+                <a href="{% url 'main-detail' pre_number %}" class="btn btn-outline-success mb-3">Назад</a>
+                <a href="{% url 'main-detail' next_number %}" class="btn btn-outline-success mb-3">Вперед</a>
+                <br>
+                <hr>
+                <a href="{% url 'main-page' %}" class="btn btn-outline-primary mt-5">На главную</a>
+            </div>
+    </div>
+    {% endif %}
+    </div>
+
+{% endblock content %}
+

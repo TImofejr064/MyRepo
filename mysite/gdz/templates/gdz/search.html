@@ -1,0 +1,23 @@
+{% extends 'gdz/base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% if tasks.number_of_task %}
+                <div class="col-lg-1 col-sm-2 ">
+                    <a class="btn-number btn btn-outline-secondary btn-lg mt-5" href="{% url 'main-detail' tasks.number_of_task %}">
+                        {{ tasks.number_of_task }}
+                        <a href="{% url 'main-page' %}" class="btn btn-outline-primary">Назад</a>
+                    </a>
+                </div>
+            {% else %}
+                    <div class="alert alert-danger mt-5" role="alert">
+                        Такого номера не существует!
+                        <a href="{% url 'main-page' %}" class="btn btn-outline-danger">Назад</a>
+                    </div>
+
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}
+
+

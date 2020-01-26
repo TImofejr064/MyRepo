@@ -1,36 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Solution
-from fake_useragent import UserAgent
-import requests
-from bs4 import BeautifulSoup
-
-
+from django.views.decorators.csrf import csrf_exempt
+# from fake_useragent import UserAgent
+# import requests
+# from bs4 import BeautifulSoup
+#
 def main_page(request):
-    # source = requests.get('https://gdz.ru/class-7/algebra/makarychev-uglublennoe-izuchenie/', headers = {'User-Agent' : UserAgent().firefox}).text
-    # soup = BeautifulSoup(source, 'lxml')
-    # block = soup.find('section', class_="active")
-    # numbers = block.div
-    # for number in numbers.find_all('a'):
-    #     try:
-    #         n = number.text
-    #         t = soup.h1.text
-    #         source_i = requests.get(f'https://gdz.ru/class-7/algebra/makarychev-uglublennoe-izuchenie/{n}-nom/').text
-    #         soup = BeautifulSoup(source_i, 'lxml')
-    #         d = soup.find('div', class_='with-overtask')
-    #         i_ur = d.img.attrs['src']
-    #         source_i = requests.get(d.img.attrs['src'][2::]).text
-    #         soup = BeautifulSoup(source_i, 'lxml')
-    #         i_ur = soup.body.img.attrs['src']
-    #
-    #         ar = Solution(book=t, number_of_task=n, image=i_ur[2::])
-    #         ar.save()
-    #     except :
-    #         print('dont worry')
-    #         continue
-
-    # n = 77
-    # source_i = requests.get(f'https://gdz.ru/class-7/algebra/makarychev-uglublennoe-izuchenie/{n}-nom/', headers = {'User-Agent' : UserAgent().firefox}).text
-    # img_block = source_i.find('img', attrs = {'alt' : 'ГДЗ по алгебре 7 класс Ю.Н. Макарычев  Углубленный уровень номер - 74, решебник'}').src
 
 
     tasks_numbers = Solution.objects.all()
@@ -40,8 +15,21 @@ def main_page(request):
 
 def nom_detail(request, number_of_task):
     post = get_object_or_404(Solution, number_of_task=number_of_task)
-    return render(request, template_name='gdz/detail.html', context={'post': post})
+    next_number = number_of_task + 1
+    pre_number = number_of_task - 1
+    return render(request, template_name='gdz/detail.html', context={'post': post, 'next_number' : next_number, 'pre_number' : pre_number})
 
 
 def redirect_page(request):
     return redirect('main-page')
+
+@csrf_exempt
+def search_number(request):
+    n = request.POST['number']
+    print(n)
+    try:
+        number = Solution.objects.get(number_of_task=n)
+        context= {'tasks' : number}
+        return render(request, template_name='gdz/search.html', context=context)
+    except:
+        return render(request, template_name='gdz/search.html')
